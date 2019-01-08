@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  author: Djordje Parovic
+  description: Too basic, simple and naive Ansible role for adnanh/webhook
+  min_ansible_version: 2.7.1
+  license: MIT
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+  categories:
+    - webhook
+
+dependencies: []
+
