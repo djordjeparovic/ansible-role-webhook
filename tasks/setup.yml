@@ -24,7 +24,7 @@
 - name: copy custom files
   copy: src={{ item }} dest={{ working_directory }}/{{ item | basename }} mode=0755
   with_fileglob:
-    - files/webhooks/*.sh
+    - files/webhooks/*
 
 - name: stop previously started screen
   shell: "{{ working_directory }}/stop.sh"
