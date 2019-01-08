@@ -1,0 +1,6 @@
+---
+- include: setup.yml
+  when: state == "present"
+
+- include: destroy.yml
+  when: state == "absent"

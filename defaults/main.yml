@@ -1,0 +1,19 @@
+---
+# Remote path where webhook module will be downloaded
+gopath: /tmp/.go
+# Remote directory where hook config and scripts will be placed
+working_directory: /tmp/webhooks
+# Local directory from which hook config and scripts will be copied to remote
+confg_scripts_directory: webhooks # look at files/webhooks/ by default
+# File which will be set as config
+config_file: hooks.json
+# name of screen which will be run webhooks
+screen_name: webhooks
+bind_ip: 0.0.0.0
+bind_port: 3000
+url_prefix: nedostatak_gorke_nehajnosti
+log_file: /tmp/hooks.log
+# Present mean just default Ansible behaviour - updating configuration. Other possible
+# value is using absent, which will REMOVE directories and data, and webhook installation
+# READ and understand what this playbook is doing before setting absent
+state: present

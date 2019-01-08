@@ -1,0 +1,15 @@
+---
+- name: remove webhook installation
+  file: state=absent path={{ item }}
+  with_items:
+    - "{{ gopath }}/bin/webhook"
+    - "{{ gopath }}/pkg/linux_amd64/github.com/adnanh/"
+    - "{{ gopath }}/src/github.com/adnanh/"
+
+- name: remove webhook config and scripts
+  file: state=absent path={{ working_directory }}/
+
+- name: stop webhook screen
+  shell: stop.sh
+  args:
+    chdir: "{{ working_directory }}"

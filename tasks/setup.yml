@@ -1,0 +1,34 @@
+---
+- name: install golang
+  apt: name=golang state=present
+
+- name: pull webhook
+  shell: go get github.com/adnanh/webhook
+  environment:
+    GOPATH: "{{ gopath }}"
+
+- name: prepare working directory
+  file:
+    path: "{{ working_directory }}"
+    state: directory
+    recurse: yes
+    mode: 0775
+
+- name: copy hook config and basic scripts
+  template: src=webhooks/{{ item }} dest={{ working_directory }}/{{ item | basename | regex_replace('\.j2','') }} mode=0755
+  with_items:
+    - hooks.json.j2
+    - run.sh.j2
+    - stop.sh.j2
+
+- name: copy custom files
+  copy: src={{ item }} dest={{ working_directory }}/{{ item | basename }} mode=0755
+  with_fileglob:
+    - files/webhooks/*.sh
+
+- name: stop previously started screen
+  shell: "{{ working_directory }}/stop.sh"
+  ignore_errors: true
+
+- name: run webhook in screen
+  shell: "{{ working_directory }}/run.sh"

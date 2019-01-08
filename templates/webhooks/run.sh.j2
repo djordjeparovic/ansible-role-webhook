@@ -1,0 +1,5 @@
+#!/bin/bash
+
+screen -S \
+{{ screen_name }} -dm bash -c \
+"{{ gopath }}/bin/webhook -ip {{ bind_ip }} -port {{ bind_port }} -hooks {{ working_directory }}/{{ config_file }} -urlprefix {{ url_prefix }} -verbose >> {{ log_file }}  2>&1"
