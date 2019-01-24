@@ -2,6 +2,7 @@
 galaxy_info:
   author: Djordje Parovic
   description: The dead simple Ansible role for adnanh/webhook
+  role_name: webhook
   min_ansible_version: 2.7.1
   license: MIT
   platforms:
@@ -10,9 +11,6 @@ galaxy_info:
         - all
   categories:
     - webhook
-
-galaxy_info:
-  role_name: webhook
 
 dependencies: []
 
